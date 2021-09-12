@@ -22,7 +22,7 @@ import com.mapbox.navigation.ui.NavigationViewOptions
 import com.mapbox.navigation.ui.OnNavigationReadyCallback
 import com.mapbox.navigation.ui.listeners.NavigationListener
 import com.mapbox.navigation.ui.map.NavigationMapboxMap
-
+import com.mapbox.api.directions.v5.DirectionsCriteria;
 
 class MapboxNavigationView(private val context: ThemedReactContext) : NavigationView(context.baseContext), NavigationListener, OnNavigationReadyCallback {
     private var origin: Point? = null
@@ -98,6 +98,7 @@ class MapboxNavigationView(private val context: ThemedReactContext) : Navigation
                     .profile(RouteUrl.PROFILE_DRIVING)
                     .steps(true)
                     .voiceInstructions(true)
+                    .voiceUnits(DirectionsCriteria.METRIC)
                     .build(), routesReqCallback)
         } catch (ex: Exception) {
             sendErrorToReact(ex.toString())
